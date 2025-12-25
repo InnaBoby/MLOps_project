@@ -1,0 +1,44 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/psf/black
+    rev: 22.10.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/pycontribs/mirrors-prettier
+    rev: v3.6.2
+    hooks:
+      - id: prettier
+        # Exclude the HTML, since it doesn't understand Jinja2
+        exclude: .+\.html
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.13.3
+    hooks:
+      - id: ruff
+        args: [--exit-non-zero-on-fix]
+      - id: ruff-format
+
+  # - repo: local
+  #   hooks:
+  #     - id: make-scripts-executable
+  #       name: Make scripts executable
+  #       entry: git update-index --chmod=+x
+  #       language: system
+  #       files: \.(sh)$ # Регулярное выражение для поиска .sh файлов
+  #       pass_filenames: true
+
+  # - repo: local
+  #   hooks:
+  #     - id: generate_documentation
+  #       name: Generating docs
+  #       entry: bash ./doc_gen.sh
+  #       language: system
+  #       pass_filenames: false
+  #       files: \.(sh)$
